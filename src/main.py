@@ -38,5 +38,3 @@ def guess(sequence:list) -> list:
     Guess the next 5 numbers of a sequecnce in a list.
     """
     return sequence[-5:]
-    
-print(start([1,2,3,4,5]))
