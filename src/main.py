@@ -31,10 +31,26 @@ def start(sequence:list) -> list:
     Guess the next 5 numbers of a sequecnce in a list.
     """
     check(sequence)
-    guess(sequence)
+    return guess(sequence)
 
 def guess(sequence:list) -> list:
     """
     Guess the next 5 numbers of a sequecnce in a list.
     """
-    return sequence[-5:]
+    correlation = sequence[1] / sequence[0]
+    print(correlation)
+    is_right = True
+    my_guess = []
+    for i, j in enumerate(sequence):
+        print(i, j)
+        # if sequence[i] / sequence[i-1] != correlation:
+        #     is_right = False
+        #     break
+
+    if is_right:
+        for i in range(5):
+            my_guess.append(int(sequence[i] * correlation))
+        return my_guess
+
+print(start([1,2,3,4,5]))
+            
