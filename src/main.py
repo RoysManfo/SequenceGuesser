@@ -32,6 +32,15 @@ def start(sequence:list) -> list:
     """
     check(sequence)
     return guess(sequence)
+    
+def learn(cell) -> None:
+    """
+    When SeGu AI learns someting, it will save it in a file.
+    """
+    with open("brain.txt", "a") as f:
+        if cell not in f.read():
+            f.write(cell + "\n")
+    return    
 
 def guess(sequence:list) -> list:
     """
