@@ -36,16 +36,18 @@ def start(sequence:list) -> list:
 def guess(sequence:list) -> list:
     """
     Guess the next 5 numbers of a sequecnce in a list.
+    The program will approach the problem by creating a graph of the sequence, where 
+    X is the number of the sequence and Y is the index of that number.
     """
     correlation = sequence[1] / sequence[0]
     print(correlation)
     is_right = True
     my_guess = []
     for i, j in enumerate(sequence):
-        print(i, j)
-        # if sequence[i] / sequence[i-1] != correlation:
-        #     is_right = False
-        #     break
+        # print(i, j)
+        if sequence[i] / sequence[i-1] != correlation:
+            is_right = False
+            break
 
     if is_right:
         for i in range(5):
