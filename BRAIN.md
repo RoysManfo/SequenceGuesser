@@ -4,8 +4,6 @@ which will be used as a starting point for the next challenges.__
 
 __Exaples:__
 
-```:  
-
 ```
 SeGu AI guesses that the correlation between the numbers [1, 2, 3, 4, 5] is +1, its brain signs +1.
 ```
