@@ -2,7 +2,9 @@
 __Each time SeGu AI guesses the correlation between numbers, its brain signs this correlation,
 which will be used as a starting point for the next challenges.__
 
-__Esempi__:  
+__Exaples:__
+
+```:  
 
 ```
 SeGu AI guesses that the correlation between the numbers [1, 2, 3, 4, 5] is +1, its brain signs +1.
