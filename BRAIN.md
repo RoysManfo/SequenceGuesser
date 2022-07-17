@@ -1,21 +1,54 @@
-# Bain.txt : Cervello di SeGu AI (Sequence Guesser Artificial intelligence)
-__Ogni volta che SeGu AI indovina la correlazione tra i nmeri, il suo cervello si segna questa correlazione,
-che userà come base di partenza per le preossime sfide.__
+# SeGu.brain : The brain of SeGu AI (Sequence Guesser Artificial intelligence)
+__Each time SeGu AI guesses the correlation between numbers, its brain signs this correlation,
+which will be used as a starting point for the next challenges.__
 
+[]: # Language: markdown
+[]: # Path: BRAIN.md
 __Esempi__:  
 
 ```
-SeGu AI indovina che la correlazione tra i nmeri [1, 2, 3, 4, 5] è 1, il suo cervello si segna 1.
+SeGu AI guesses that the correlation between the numbers [1, 2, 3, 4, 5] is +1, its brain signs +1.
 ```
 
 ```
-SeGu AI indovina che la correlazione tra i nmeri [0, 2, 4, 6, 8] è 2, il suo cervello si segna 2.
+SeGu AI guesses that the correlation between the numbers [0, 2, 4, 6, 8] is +2, its brain signs +2.
 ```
 
 ```
-SeGu AI indovina che la correlazione tra i nmeri [1, 3, 5, 7, 9] è 2, il suo cervello NON segna di nuovo 2.
+SeGu AI guesses that the correlation between the numbers [1,3,5,7,9] is 2, its brain DOESN'T sign again 2.
 ```
 
 ```
-SeGu AI indovina che la correlazione tra i nmeri [0, 3, 6, 9, 12] è 2.5, risultato. atteso: 3, NON segna 4.
+SeGu AI guesses that the correlation between the numbers [0, 3, 6, 9, 12] is 2.5, wrong, its brain DOESN't sign 3.
 ```
+
+## How does it work ?
+Each time SeGu AI guesses the correlation between numbers, its brain signs this correlation which will be used as a starting point for the next challenges. In this way, SeGu AI can learn how to guess the correlation between numbers.
+
+When a correlation is by addiction or subtraction, SeGu AI will write on it's brain a + followed by the number of the correlation.
+```
+Array: [1, 2, 3, 4, 5]  Correlation: +1  Brain: +1
+Array: [0, 2, 4, 6, 8]  Correlation: +2  Brain: +2
+Array: [1, 2.5, 4, 5.5, 7]  Correlation: +1.5  Brain: +1.5
+
+```
+```
+Array : [10, 9, 8, 7, 6]  Correlation: -1  Brain: -1
+Array : [11, 9, 7, 5, 3]  Correlation: -2  Brain: -2
+Array : [12, 11, 10, 9, 8]  Correlation: -1.5  Brain: -1.5
+```
+
+
+When a correlation is by multiplication or division, SeGu AI will write on it's brain a * followed by the number of the correlation.
+```
+Array: [1, 2, 4, 6, 8]  Correlation: *2  Brain: *2
+Array: [1, 3, 6, 9, 12]  Correlation: *3  Brain: *3
+Array: [11, 121, 1331, 14641, 161051]  Correlation: *11  Brain: *11
+```
+```
+Array: [64, 32, 16, 8, 4]  Correlation: /2  Brain: /2
+Array: [27, 24, 21, 18, 15]  Correlation: /3  Brain: /3
+Array:[161051, 14641, 1331, 121, 11] Correlation: /11  Brain: /11
+```
+
+
