@@ -33,12 +33,11 @@ And so on.
 
 When a correlation is by subtraction, SeGu AI will write on it's brain "x - [the number of the correlation]".
 ```
-```
 Array : [10, 9, 8, 7, 6]  Correlation: -1  Brain: x - 1
 Array : [11, 9, 7, 5, 3]  Correlation: -2  Brain: x - 2
 Array : [12, 11, 10, 9, 8]  Correlation: -1.5  Brain: x - 1.5
 ```
-
+And so on.
 
 Same thing with multiplication, SeGu AI will write on it's brain "x * [the number of the correlation]".
 ```
