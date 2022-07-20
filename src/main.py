@@ -16,71 +16,55 @@
 # You should have received a copy of the GNU General Public License
 # along with SeGu AI.  If not, see <http://www.gnu.org/licenses/>.
 
+from utils import check, learn
 
-def check(sequence:list) -> bool:
-    # Check if the sequence is a list
-    # If not, raise an error
-    try:
-        sequence.append(5)
-        sequence.pop(-1)
-    except Exception:
-        raise TypeError("Sequence must be a list")
-    
-    # Check if the sequence is empty
-    # If so, raise an error
-    if len(sequence) == 0:
-        raise ValueError("Sequence must not be empty")
-
-    # Check if the sequence is a list of integers
-    # If not, raise an error
-    elif not all(isinstance(x, int) for x in sequence):
-        raise TypeError("Sequence must be a list of integers")
-
-    # Check if the sequence is a list of at least 5 integers
-    # If not, raise an error
-    elif len(sequence) < 5:
-        raise ValueError("Sequence must be a list of at least 5 integers")
-
-    else:
-        return True
-
-def start(sequence:list) -> list:
+def start(sequence:list, NUM:int = 5) -> list:
     """
-    Guess the next 5 numbers of a sequecnce in a list.
+    Guess the next {NUM} numbers of a sequecnce in a list.
     """
     check(sequence)
-    return guess(sequence)
-    
-def learn(cell) -> None:
-    """
-    When SeGu AI learns someting, it will save it in a file.
-    """
-    with open("brain.txt", "a") as f:
-        if cell not in f.read():
-            f.write(cell + "\n")
-    return    
+    return guess(sequence, NUM)   
 
-def guess(sequence:list) -> list:
+def guess(sequence:list, NUM:int) -> list:
     """
-    Guess the next 5 numbers of a sequecnce in a list.
+    Guess the next {NUM} numbers of a sequecnce in a list.
     The program will approach the problem by creating a graph of the sequence, where 
     X is the number of the sequence and Y is the index of that number.
     """
-    correlation = sequence[1] - sequence[0]
-    # print(correlation)
     is_right = True
-    my_guess = []
-    for i, j in enumerate(sequence):
-        # print(i, j)
-        if i == 0:
-            continue
-        elif j - sequence[i-1] != correlation:
-            is_right = False
-            break
+    by_addiction = True
+    cell = ''
+    # SeGu will start by checking if the values of the numbers of sequence increase or decrease
+    # If they increase, SeGu will guess the correlation could contain a + or *
+    # If they decrease, SeGu will guess the correlation could contain a - or /
 
-    if is_right:
-        my_guess = [i for i in range(sequence[-1] + 1, sequence[-1] + 6)]
-        return my_guess
+    if max(sequence) == sequence[-1] and min(sequence) == sequence[0]:
+        increase = True
+    elif max(sequence) == sequence[0] and min(sequence) == sequence[-1]:
+        decrease = True
 
-print(start([2,3,4,5,6]))
+    if increase:
+        correlation = sequence[1] - sequence[0]
+    
+        for i, j in enumerate(sequence):
+            # print(i, j)
+            if i == 0:
+                continue
+            elif j - sequence[i-1] != correlation:
+                is_right = False
+                by_addiction = False
+                break
+
+        if is_right and by_addiction:
+            my_guess = [i for i in range(sequence[-1] + correlation, sequence[-1] + NUM * correlation + 1, correlation)]
+            cell = f"x + {correlation}"
+            learn(cell)
+
+    elif decrease:
+        pass
+    else:
+        return ["No correlation detected"]
+    return my_guess
+
+print(start([10, 20, 30, 40, 50], 5))
             
