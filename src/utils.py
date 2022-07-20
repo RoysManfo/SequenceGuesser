@@ -55,3 +55,9 @@ def learn(cell) -> None:
                 f.write(cell + "\n")
     return 
 
+def remember() -> int:
+    """
+    SeGu AI will remember the sequence it learned by using it's brain file to get the equation
+    of the sequence.
+    """
+    pass
