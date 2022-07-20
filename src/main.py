@@ -1,3 +1,21 @@
+# GNU GPL Licence:
+# Copyright (C) 2022  Roys Manfo
+
+# This file is part of SeGu AI (Seqence Guesser Artificial Intelligence).
+
+# SeGu AI is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# SeGu AI is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with SeGu AI.  If not, see <http://www.gnu.org/licenses/>.
+
 
 def check(sequence:list) -> bool:
     # Check if the sequence is a list
@@ -48,20 +66,21 @@ def guess(sequence:list) -> list:
     The program will approach the problem by creating a graph of the sequence, where 
     X is the number of the sequence and Y is the index of that number.
     """
-    correlation = sequence[1] / sequence[0]
-    print(correlation)
+    correlation = sequence[1] - sequence[0]
+    # print(correlation)
     is_right = True
     my_guess = []
     for i, j in enumerate(sequence):
         # print(i, j)
-        if sequence[i] / sequence[i-1] != correlation:
+        if i == 0:
+            continue
+        elif j - sequence[i-1] != correlation:
             is_right = False
             break
 
     if is_right:
-        for i in range(5):
-            my_guess.append(int(sequence[i] * correlation))
+        my_guess = [i for i in range(sequence[-1] + 1, sequence[-1] + 6)]
         return my_guess
 
-print(start([1,2,3,4,5]))
+print(start([2,3,4,5,6]))
             
