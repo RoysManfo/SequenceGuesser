@@ -25,7 +25,7 @@ def start(sequence:list, NUM:int = 5) -> list:
     check(sequence)
     return guess(sequence, NUM)   
 
-def guess(sequence:list, NUM:int) -> list:
+def guess(sequence:list, NUM:int=5) -> list:
     """
     Guess the next {NUM} numbers of a sequecnce in a list.
     The program will approach the problem by creating a graph of the sequence, where 
@@ -66,5 +66,5 @@ def guess(sequence:list, NUM:int) -> list:
         return ["No correlation detected"]
     return my_guess
 
-print(start([10, 20, 30, 40, 50], 5))
+# print(start([10, 20, 30, 40, 50], 5))
             
