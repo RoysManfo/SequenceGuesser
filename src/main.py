@@ -32,7 +32,8 @@ def guess(sequence:list, NUM:int=5) -> list:
     X is the number of the sequence and Y is the index of that number.
     """
     is_right = True
-    by_addiction = True
+    by_addiction, by_subtraction = True, True
+    increase, decrease = False , False
     cell = ''
     # SeGu will start by checking if the values of the numbers of sequence increase or decrease
     # If they increase, SeGu will guess the correlation could contain a + or *
@@ -61,10 +62,27 @@ def guess(sequence:list, NUM:int=5) -> list:
             learn(cell)
 
     elif decrease:
-        pass
+        correlation = sequence[0] - sequence[1]
+    
+        for i, j in enumerate(sequence):
+            # print(i, j)
+            if i == len(sequence)-1:
+                break
+            elif j - sequence[i+1] != correlation:
+                is_right = False
+                by_addiction = False
+                break
+        
+        if is_right and by_subtraction:
+            my_guess = [sequence[-1] - correlation]
+
+            for i in range(NUM-1):
+                my_guess.append(my_guess[-1] - correlation)
+            cell = f"x - {correlation}"
+            learn(cell)
     else:
         return ["No correlation detected"]
     return my_guess
 
-# print(start([10, 20, 30, 40, 50], 5))
+print(guess([15,14,13,12,11], 11))
             
