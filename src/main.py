@@ -84,5 +84,6 @@ def guess(sequence:list, NUM:int=5) -> list:
         return ["No correlation detected"]
     return my_guess
 
-print(guess([15,14,13,12,11], 11))
+if __name__ == '__main__':
+    print(guess([15,14,13,12,11], 11))
             
