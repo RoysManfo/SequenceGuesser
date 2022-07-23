@@ -17,7 +17,7 @@
 # along with SeGu AI.  If not, see <http://www.gnu.org/licenses/>.
 
 import test_check
-import test_1_linear
+import test_1_linear, test_2_linear
 
 import colorama
 colorama.init()
@@ -86,11 +86,24 @@ if test_1_linear.test_odd_num_pattern_2():
 else:
     print(Fore.RED + "X Test 9 failed")
 
+"""
+Test 2 Linear
+"""
+if test_2_linear.test_linear_pattern():
+    print(Fore.GREEN + "O Test 10 passed")
+    passed += 1
+else:
+    print(Fore.RED + "X Test 10 failed")
 
+if test_2_linear.test_linear_pattern_2():
+    print(Fore.GREEN + "O Test 11 passed")
+    passed += 1
+else:
+    print(Fore.RED + "X Test 11 failed")
 
 
 """
 RESULTS
 """
-print("\n" + Fore.GREEN + "Passed: " + str(passed) + "/9")
-print(Fore.GREEN + "Passed: " + str(float(passed / 9*100)) + "%")
+print("\n" + Fore.GREEN + "Passed: " + str(passed) + "/11")
+print(Fore.GREEN + "Passed: " + str(float(passed / 11*100)) + "%")
