@@ -67,3 +67,12 @@ x + 5
 ```
 Will be interpreted like:  
 "_To get the next number, I need to add 5 to the last of the sequence_" ( x = y + 5 )
+
+## Special cases
+
+In some situations the equation could be more complex, and involve multiple previuos numbers.  
+In that case, the sintax will use "x1, x2, x3 ..."
+where x1 is the last number of the sequence, x2 is 
+the second to last and so on.  
+
+x0 will not be used in the brain, but you can still think about it as "_the number I'm trying to guess_"
