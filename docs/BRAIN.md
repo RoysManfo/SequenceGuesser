@@ -54,4 +54,16 @@ Array: [27, 24, 21, 18, 15]             Correlation: /3     Brain: x / 3
 Array: [161051, 14641, 1331, 121, 11]   Correlation: /11    Brain: x / 11
 ```
 
+## Syntax
+To remember what SeGu AI lerrned, it will the function "__remember()__" wich will read the brain and start interpreting what's written to give a result.
 
+A cell is usualy written like this:
+```
+x [sign of the operation] [correltion] 
+```
+For example, something like
+```
+x + 5 
+```
+Will be interpreted like:  
+"_To get the next number, I need to add 5 to the last of the sequence_" ( x = y + 5 )
