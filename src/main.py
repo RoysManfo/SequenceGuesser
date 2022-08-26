@@ -17,6 +17,9 @@
 # along with SeGu AI.  If not, see <http://www.gnu.org/licenses/>.
 
 from utils import check, learn
+import sklearn as sk
+from sklearn.linear_model import LogisticRegression
+
 
 def start(sequence:list, NUM:int = 5) -> list:
     """
@@ -25,11 +28,13 @@ def start(sequence:list, NUM:int = 5) -> list:
     check(sequence)
     return guess(sequence, NUM)   
 
-def guess(sequence:list, NUM:int=5) -> list:
+def guess(sequence:list, NUM:int=5, use_sk = False) -> list:
     """
-    Guess the next {NUM} numbers of a sequecnce in a list.
+    Guess the next NUM  numbers of a sequence in a list.
     The program will approach the problem by creating a graph of the sequence, where 
     X is the number of the sequence and Y is the index of that number.
+
+    If use_sk is set to True, the SeGu AI will use the scikit-learn library to make a prediction
     """
     is_right = True
     by_addiction, by_subtraction = True, True
@@ -81,7 +86,15 @@ def guess(sequence:list, NUM:int=5) -> list:
             cell = f"x - {correlation}"
             learn(cell)
     else:
-        return ["No correlation detected"]
+        # Tries to guess by using sklearn by creating a graph with indexes on the 
+        # X axis, ordered integers on the Y axis and the elements of the sequence as targets
+
+        model = LogisticRegression()
+        X = [[i for i in range(0, len(sequence))], [i for i in range(sequence[0], sequence[-1])]]
+        y = sequence
+        model.fit(X, y)
+        my_guess = [model.coef_, model.intercept_]
+        
     return my_guess
 
 if __name__ == '__main__':
