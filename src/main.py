@@ -28,7 +28,7 @@ def start(sequence:list, NUM:int = 5) -> list:
     check(sequence)
     return guess(sequence, NUM)   
 
-def guess(sequence:list, NUM:int=5, use_sk = False) -> list:
+def guess(sequence:list, NUM:int = 5, use_sk:bool = False) -> list:
     """
     Guess the next NUM  numbers of a sequence in a list.
     The program will approach the problem by creating a graph of the sequence, where 
@@ -48,43 +48,46 @@ def guess(sequence:list, NUM:int=5, use_sk = False) -> list:
         increase = True
     elif max(sequence) == sequence[0] and min(sequence) == sequence[-1]:
         decrease = True
-
-    if increase:
-        correlation = sequence[1] - sequence[0]
-    
-        for i, j in enumerate(sequence):
-            # print(i, j)
-            if i == 0:
-                continue
-            elif j - sequence[i-1] != correlation:
-                is_right = False
-                by_addiction = False
-                break
-
-        if is_right and by_addiction:
-            my_guess = [i for i in range(sequence[-1] + correlation, sequence[-1] + NUM * correlation + 1, correlation)]
-            cell = f"x + {correlation}"
-            learn(cell)
-
-    elif decrease:
-        correlation = sequence[0] - sequence[1]
-    
-        for i, j in enumerate(sequence):
-            # print(i, j)
-            if i == len(sequence)-1:
-                break
-            elif j - sequence[i+1] != correlation:
-                is_right = False
-                by_addiction = False
-                break
+    if not use_sk:
+        if increase:
+            correlation = sequence[1] - sequence[0]
         
-        if is_right and by_subtraction:
-            my_guess = [sequence[-1] - correlation]
+            for i, j in enumerate(sequence):
+                # print(i, j)
+                if i == 0:
+                    continue
+                elif j - sequence[i-1] != correlation:
+                    is_right = False
+                    by_addiction = False
+                    break
 
-            for i in range(NUM-1):
-                my_guess.append(my_guess[-1] - correlation)
-            cell = f"x - {correlation}"
-            learn(cell)
+            if is_right and by_addiction:
+                my_guess = [i for i in range(sequence[-1] + correlation, sequence[-1] + NUM * correlation + 1, correlation)]
+                cell = f"x + {correlation}"
+                learn(cell)
+
+        elif decrease:
+            correlation = sequence[0] - sequence[1]
+        
+            for i, j in enumerate(sequence):
+                # print(i, j)
+                if i == len(sequence)-1:
+                    break
+                elif j - sequence[i+1] != correlation:
+                    is_right = False
+                    by_addiction = False
+                    break
+            
+            if is_right and by_subtraction:
+                my_guess = [sequence[-1] - correlation]
+
+                for i in range(NUM-1):
+                    my_guess.append(my_guess[-1] - correlation)
+                cell = f"x - {correlation}"
+                learn(cell)
+        else:
+            return []
+        
     else:
         # Tries to guess by using sklearn by creating a graph with indexes on the 
         # X axis, ordered integers on the Y axis and the elements of the sequence as targets
@@ -98,5 +101,5 @@ def guess(sequence:list, NUM:int=5, use_sk = False) -> list:
     return my_guess
 
 if __name__ == '__main__':
-    print(guess([15,14,13,12,11], 11))
+    print(guess([15,14,13,12,11], 11, True))
             
